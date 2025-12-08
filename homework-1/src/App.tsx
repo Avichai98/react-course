@@ -1,7 +1,6 @@
 import './App.css'
-import Input from './components/Input'
+import { Home, Input } from './components'
 import { Link, Route, Routes } from 'react-router-dom'
-import Home from './components/Home'
 
 function App() {
 
