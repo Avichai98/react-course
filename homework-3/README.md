@@ -78,4 +78,20 @@ A global theme (light/dark) has been implemented using a Zustand store (`src/sto
 
 A `GlobalLoadingIndicator` component has been added. It uses the `useIsFetching` and `useIsMutating` hooks from TanStack Query to determine if any network requests are in flight. When a query or mutation is active, it displays a thin loading bar at the top of the page, providing global feedback to the user that something is happening in the background.
 
+---
 
+## Step 9 — Reflection
+
+*   **TanStack Query** is used exclusively for **server state**. This includes fetching the product list with `useQuery` and managing the "add to cart" API call with `useMutation`. The global loading indicator also hooks into TanStack Query to know when any network requests are active.
+
+*   **React Context** is used for simple, low-frequency **global UI state**. The `CartSidebarContext` which manages the `isCartOpen` boolean is a perfect example. It's needed by both the `Header` and the `CartSidebar`, but it doesn't change often.
+
+*   **Zustand** is used for more complex or frequently updated **global client state**. The list of active toast notifications, the contents of the shopping cart (`items`), and the application's theme (`light`/`dark`) are all managed in separate Zustand stores.
+
+*   **Local `useState`** would be used for ephemeral UI state that only affects a single component. For example, if we had a search input to filter products, the text value of that input should be kept in local state within the filter component to prevent unnecessary re-renders of the entire application on each keystroke.
+
+*   A clear example of **correct global state** was the theme. It needs to be accessed by components across the entire app (the header button, the root `<html>` element) and persisted, making it a perfect candidate for a global store like Zustand with persistence middleware.
+
+*   An example where **local state was intentionally not made global** is the loading state of an individual "Add to Cart" button. While the mutation itself is global, the `isPending` state specific to *one product* is used directly in the `renderProducts` function to disable only the button that was clicked, which is more efficient and precise than a global "is adding item" flag.
+
+*   **Summary of Learning:** The key takeaway is that modern React applications use a mix of state management tools, each for its specific purpose. There is no single "best" solution. By categorizing state into server state (TanStack Query), global client state (Zustand/Context), and local UI state (`useState`), we can build applications that are more performant, scalable, and easier to maintain.
