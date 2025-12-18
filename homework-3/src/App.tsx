@@ -1,27 +1,64 @@
+import {
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
 import CartSidebarProvider from './context/CartSidebarContext';
-import Header from './components/Header';
-import CartSidebar from './components/Cart';
-import ToastHost from './components/ToastHost';
+import { Header, CartSidebar, ToastHost } from './components';
 import './App.css';
 import { useNotificationStore } from './stores/notifications';
+import { addToCartAPI } from './api/cart';
+import { fetchProductsAPI, type Product } from './api/products';
+import { useCartStore } from './stores/cart';
 
 function App() {
-  // A more professional way to access store actions is by using a selector.
   const addNotification = useNotificationStore((state) => state.addNotification);
+  const addProductToCart = useCartStore((state) => state.addToCart);
 
-  // Define handler functions to keep JSX clean.
-  const handleShowSuccess = () => {
-    addNotification({
-      type: 'success',
-      message: 'Item added to cart successfully!',
-    });
-  };
+  const { data: products, isLoading, isError: isProductsError } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchProductsAPI,
+  });
 
-  const handleShowError = () => {
-    addNotification({
-      type: 'error',
-      message: 'Failed to load product data.',
-    });
+  const addToCartMutation = useMutation({
+    mutationFn: (product: Product) => addToCartAPI(product.id),
+    onSuccess: (data, product) => {
+      addNotification({
+        type: 'success',
+        message: `${product.title} was added to your cart!`,
+      });
+      addProductToCart(product);
+    },
+    onError: (error) => {
+      addNotification({
+        type: 'error',
+        message: error.message || 'An unknown error occurred.',
+      });
+    },
+  });
+
+  const renderProducts = () => {
+    if (isLoading) return <div>Loading products...</div>;
+    if (isProductsError) return <div>Error loading products. Please try again later.</div>;
+
+    return (
+      <div className="product-grid">
+        {products?.map((product) => (
+          <div key={product.id} className="product-card">
+            <img src={product.thumbnail} alt={product.title} />
+            <h3>{product.title}</h3>
+            <p>${product.price}</p>
+            <button
+              onClick={() => addToCartMutation.mutate(product)}
+              disabled={addToCartMutation.isPending && addToCartMutation.variables?.id === product.id}
+            >
+              {addToCartMutation.isPending && addToCartMutation.variables?.id === product.id
+                ? 'Adding...'
+                : 'Add to Cart'}
+            </button>
+          </div>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -29,21 +66,8 @@ function App() {
       <div className="app">
         <Header />
         <main className="app-main">
-          <h2>Page Content</h2>
-          <div className="temp-controls">
-            <button
-              className="temp-button success"
-              onClick={handleShowSuccess}
-            >
-              Show Success Toast
-            </button>
-            <button
-              className="temp-button error"
-              onClick={handleShowError}
-            >
-              Show Error Toast
-            </button>
-          </div>
+          <h2>Products</h2>
+          {renderProducts()}
         </main>
         <CartSidebar />
         <ToastHost />

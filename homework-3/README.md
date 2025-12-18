@@ -53,3 +53,15 @@ The `useLocalStorage` custom hook works like `useState` but initializes its valu
 
 ![success](image.png)
 ![error](image-1.png)
+
+---
+
+## Step 5 — Connect Toasts to Real Events
+
+### Success Toasts
+
+The `useMutation` hook from TanStack Query provides an `onSuccess` callback. This callback is used to trigger our Zustand `addNotification` action, showing a "success" toast when the mock API call resolves successfully.
+
+### Error Toasts
+
+Similarly, the `onError` callback in `useMutation` is used to show an "error" toast when the API call fails. In addition to the global toast, the component also uses the `isError` and `error` properties from the mutation to render an inline error message directly in the UI, providing immediate, contextual feedback to the user.

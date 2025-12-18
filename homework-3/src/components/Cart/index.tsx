@@ -1,7 +1,11 @@
 import { useCartSidebar } from '../../hooks/useCartSidebar';
+import { useCartStore } from '../../stores/cart';
 
 export default function CartSidebar() {
   const { isCartOpen, closeCart } = useCartSidebar();
+  const { items } = useCartStore();
+
+  const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
     <>
@@ -17,8 +21,27 @@ export default function CartSidebar() {
           </button>
         </div>
         <div className="sidebar-content">
-          <p>Your cart is empty.</p>
-          {/* Cart items will go here */}
+          {items.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <>
+              <ul className="cart-items-list">
+                {items.map((item) => (
+                  <li key={item.id} className="cart-item">
+                    <img src={item.thumbnail} alt={item.title} />
+                    <div className="cart-item-details">
+                      <span>{item.title}</span>
+                      <span>Qty: {item.quantity}</span>
+                    </div>
+                    <span className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="cart-total">
+                <strong>Total: ${total.toFixed(2)}</strong>
+              </div>
+            </>
+          )}
         </div>
       </aside>
     </>
