@@ -9,6 +9,7 @@ export interface CartItem extends Product {
 interface CartStore {
   items: CartItem[];
   addToCart: (product: Product) => void;
+  removeFromCart: (productId: number) => void;
 }
 
 export const useCartStore = create<CartStore>()(
@@ -29,6 +30,10 @@ export const useCartStore = create<CartStore>()(
             return { items: [...state.items, { ...product, quantity: 1 }] };
           }
         }),
+      removeFromCart: (productId) =>
+        set((state) => ({
+          items: state.items.filter((item) => item.id !== productId),
+        })),
     }),
     { name: 'cart-storage' } // Unique name for the localStorage item
   )

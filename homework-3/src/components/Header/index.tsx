@@ -1,4 +1,5 @@
 import { useCartSidebar } from '../../hooks/useCartSidebar';
+import ThemeToggleButton from '../../hooks/ThemeToggleButton';
 
 export default function Header() {
   const { toggleCart } = useCartSidebar();
@@ -6,7 +7,8 @@ export default function Header() {
   return (
     <header className="app-header">
       <h1>My Shop</h1>
-      <nav>
+      <nav className="header-nav">
+        <ThemeToggleButton />
         <button onClick={toggleCart} className="cart-button">
           Cart
         </button>

@@ -3,7 +3,7 @@ import { useCartStore } from '../../stores/cart';
 
 export default function CartSidebar() {
   const { isCartOpen, closeCart } = useCartSidebar();
-  const { items } = useCartStore();
+  const { items, removeFromCart } = useCartStore();
 
   const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -34,6 +34,9 @@ export default function CartSidebar() {
                       <span>Qty: {item.quantity}</span>
                     </div>
                     <span className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</span>
+                    <button onClick={() => removeFromCart(item.id)} className="remove-item-btn" aria-label={`Remove ${item.title} from cart`}>
+                      &times;
+                    </button>
                   </li>
                 ))}
               </ul>

@@ -65,3 +65,17 @@ The `useMutation` hook from TanStack Query provides an `onSuccess` callback. Thi
 ### Error Toasts
 
 Similarly, the `onError` callback in `useMutation` is used to show an "error" toast when the API call fails. In addition to the global toast, the component also uses the `isError` and `error` properties from the mutation to render an inline error message directly in the UI, providing immediate, contextual feedback to the user.
+
+---
+
+## Step 6 — Optional Bonuses
+
+### Bonus A — Theme Toggle
+
+A global theme (light/dark) has been implemented using a Zustand store (`src/stores/theme.ts`). The state is persisted to `localStorage` using Zustand's `persist` middleware. A `ThemeToggleButton` in the header allows the user to switch themes, and a custom hook (`useThemeEffect`) applies a `.dark` class to the `<html>` element to activate the dark mode styles defined in `index.css`.
+
+### Bonus B — Global Loading Indicator
+
+A `GlobalLoadingIndicator` component has been added. It uses the `useIsFetching` and `useIsMutating` hooks from TanStack Query to determine if any network requests are in flight. When a query or mutation is active, it displays a thin loading bar at the top of the page, providing global feedback to the user that something is happening in the background.
+
+

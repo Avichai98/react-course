@@ -3,14 +3,16 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import CartSidebarProvider from './context/CartSidebarContext';
-import { Header, CartSidebar, ToastHost } from './components';
+import { Header, CartSidebar, ToastHost, GlobalLoadingIndicator } from './components';
 import './App.css';
 import { useNotificationStore } from './stores/notifications';
 import { addToCartAPI } from './api/cart';
 import { fetchProductsAPI, type Product } from './api/products';
 import { useCartStore } from './stores/cart';
+import { useThemeEffect } from './hooks/useThemeEffect';
 
 function App() {
+  useThemeEffect(); // Apply theme class to the root element
   const addNotification = useNotificationStore((state) => state.addNotification);
   const addProductToCart = useCartStore((state) => state.addToCart);
 
@@ -21,7 +23,7 @@ function App() {
 
   const addToCartMutation = useMutation({
     mutationFn: (product: Product) => addToCartAPI(product.id),
-    onSuccess: (data, product) => {
+    onSuccess: (_data, product) => {
       addNotification({
         type: 'success',
         message: `${product.title} was added to your cart!`,
@@ -64,6 +66,7 @@ function App() {
   return (
     <CartSidebarProvider>
       <div className="app">
+        <GlobalLoadingIndicator />
         <Header />
         <main className="app-main">
           <h2>Products</h2>
