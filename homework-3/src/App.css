@@ -65,3 +65,37 @@
 .sidebar-content {
   padding: 1.5rem;
 }
+
+/* Temporary controls for screenshots */
+.temp-controls {
+  margin-top: 2rem;
+  border: 1px solid #dee2e6;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.temp-controls button + button {
+  margin-left: 1rem;
+}
+
+.temp-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: opacity 0.2s;
+}
+
+.temp-button:hover {
+  opacity: 0.9;
+}
+
+.temp-button.success {
+  background-color: #28a745; /* Green */
+}
+
+.temp-button.error {
+  background-color: #dc3545; /* Red */
+}

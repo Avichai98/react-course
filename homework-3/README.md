@@ -33,3 +33,23 @@ The `useLocalStorage` custom hook works like `useState` but initializes its valu
 
 *   “Opened sidebar, refreshed → still open”
 *   “Closed sidebar, refreshed → still closed”
+
+---
+
+## Step 4 — Global Toast Store (Zustand)
+
+### Library Choice
+
+*   **Library:** Zustand
+*   **Reason:** I chose Zustand because it is a very lightweight and simple state management library. It uses a hook-based API that doesn't require wrapping the application in a context provider, which makes it ideal for managing global state that is not directly tied to a specific component subtree, like notifications.
+*   **Store Location:** `src/stores/notifications.ts`
+
+### Store Design
+
+*   **Notification Shape:** A notification object includes an `id` (number), `type` ('success' | 'error' | 'info'), and a `message` (string).
+*   **Store API:** The store exposes the list of `notifications` and provides actions to `addNotification(notification)`, `removeNotification(id)`, and `clearAll()`.
+
+### Implementation Screenshot
+
+![success](image.png)
+![error](image-1.png)

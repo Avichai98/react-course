@@ -1,4 +1,4 @@
-import { useCartSidebar } from '../hooks/useCartSidebar';
+import { useCartSidebar } from '../../hooks/useCartSidebar';
 
 export default function CartSidebar() {
   const { isCartOpen, closeCart } = useCartSidebar();
