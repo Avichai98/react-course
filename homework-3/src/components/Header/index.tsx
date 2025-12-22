@@ -1,7 +1,7 @@
 import { useCartSidebar } from '../../hooks/useCartSidebar';
 import ThemeToggleButton from '../../hooks/ThemeToggleButton';
 
-export default function Header() {
+export const Header = () => {
   const { toggleCart } = useCartSidebar();
 
   return (

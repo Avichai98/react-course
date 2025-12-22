@@ -1,7 +1,7 @@
 import { useNotificationStore } from '../../stores/notifications';
 import './index.css';
 
-export default function ToastHost() {
+export const ToastHost = () => {
   const { notifications, removeNotification } = useNotificationStore();
 
   if (notifications.length === 0) {

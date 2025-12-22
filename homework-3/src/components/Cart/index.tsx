@@ -1,7 +1,7 @@
 import { useCartSidebar } from '../../hooks/useCartSidebar';
 import { useCartStore } from '../../stores/cart';
 
-export default function CartSidebar() {
+export const CartSidebar = () => {
   const { isCartOpen, closeCart } = useCartSidebar();
   const { items, removeFromCart } = useCartStore();
 

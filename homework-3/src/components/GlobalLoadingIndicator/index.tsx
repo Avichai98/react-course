@@ -1,7 +1,7 @@
 import { useIsFetching, useIsMutating } from '@tanstack/react-query';
 import './index.css';
 
-export default function GlobalLoadingIndicator() {
+export const GlobalLoadingIndicator = () => {
   const isFetching = useIsFetching();
   const isMutating = useIsMutating();
 
