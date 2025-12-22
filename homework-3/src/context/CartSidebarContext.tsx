@@ -1,10 +1,18 @@
 import { useMemo, type ReactNode, useCallback } from 'react'; // Import useCallback
-import { CartSidebarContext, type CartSidebarContextType } from './cartSidebarTypes'; // Import from the new file
+import { createContext } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+
+interface CartSidebarContextType {
+  isCartOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
+  toggleCart: () => void;
+}
 
 // Create the provider component
 export default function CartSidebarProvider({ children }: { children: ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useLocalStorage<boolean>('cart-sidebar-open', false);
+  const CartSidebarContext = createContext<CartSidebarContextType | undefined>(undefined);
 
   // Memoize the functions to ensure stable references across renders.
   // setIsCartOpen is a stable function from useLocalStorage, so these callbacks will also be stable.
@@ -20,6 +28,8 @@ export default function CartSidebarProvider({ children }: { children: ReactNode 
   );
 
   return (
-    <CartSidebarContext.Provider value={value}>{children}</CartSidebarContext.Provider>
+    <CartSidebarContext.Provider
+      value={value}>{children}
+    </CartSidebarContext.Provider>
   );
 }
