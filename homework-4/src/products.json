@@ -1,0 +1,10 @@
+{
+  "products_page_title": "המוצרים שלנו",
+  "showing_products_one": "מציג {{count}} מוצר",
+  "showing_products_other": "מציג {{count}} מוצרים",
+  "loading": "טוען...",
+  "error": "אירעה שגיאה: {{error}}",
+  "no_products": "לא נמצאו מוצרים.",
+  "view_details": "צפה בפרטים",
+  "back_to_products": "חזרה למוצרים"
+}
