@@ -1,10 +1,19 @@
 {
-  "products_page_title": "המוצרים שלנו",
-  "showing_products_one": "מציג {{count}} מוצר",
-  "showing_products_other": "מציג {{count}} מוצרים",
-  "loading": "טוען...",
-  "error": "אירעה שגיאה: {{error}}",
-  "no_products": "לא נמצאו מוצרים.",
-  "view_details": "צפה בפרטים",
-  "back_to_products": "חזרה למוצרים"
+  "products_page_title": "Our Products",
+  "showing_products_one": "Showing {{count}} product",
+  "showing_products_other": "Showing {{count}} products",
+  "loading": "Loading...",
+  "error": "An error occurred: {{error}}",
+  "no_products": "No products found.",
+  "view_details": "View Details",
+  "back_to_products": "Back to Products",
+  "image": "Image",
+  "title": "Title",
+  "price": "Price",
+  "category": "Category",
+  "action": "Action",
+  "add_to_cart": "Add to Cart",
+  "cart_add_success": "{{productTitle}} was added to your cart!",
+  "cart_add_error": "Failed to add item to cart: {{error}}",
+  "unknown_error": "An unknown error occurred."
 }

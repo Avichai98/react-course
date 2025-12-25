@@ -1,10 +1,17 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import "./index.css";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeSwitcher from "../ThemeSwitcher";
+import { useCartSidebar } from "../../hooks/useCartSidebar";
+import { useCartStore } from "../../stores/cart";
 
 export const Header = () => {
   const { t } = useTranslation(["common"]);
+  const { openCart } = useCartSidebar();
+  const { items } = useCartStore();
+  
+  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <header className="app-header">
@@ -14,7 +21,12 @@ export const Header = () => {
           <NavLink to="/products">{t("nav_products")}</NavLink>
         </nav>
         <div className="flex-spacer"></div>
+        <button onClick={openCart} className="cart-button">
+          🛒 Cart ({totalItems})
+        </button>
+        <ThemeSwitcher />
         <LanguageSwitcher />
+        <p className="footer-text"><Trans i18nKey="powered_by" ns="common" /></p>
       </div>
     </header>
   );

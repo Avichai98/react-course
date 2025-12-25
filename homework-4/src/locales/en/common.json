@@ -2,5 +2,12 @@
   "appTitle": "Prime Store",
   "nav_products": "Products",
   "language": "Language",
-  "made_with_love": "Made with <3 by Gemini Code Assist User"
+  "theme": "Theme",
+  "powered_by": "Powered by <1>React</1> & <2>PrimeReact</2>",
+  "cart_title": "Your Cart",
+  "close_cart": "Close cart",
+  "cart_empty": "Your cart is empty.",
+  "quantity": "Qty",
+  "remove_from_cart": "Remove {{productTitle}} from cart",
+  "total": "Total"
 }

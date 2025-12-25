@@ -1,11 +1,22 @@
 import { useCartSidebar } from '../../hooks/useCartSidebar';
 import { useCartStore } from '../../stores/cart';
+import { useTranslation } from 'react-i18next';
 
 export const CartSidebar = () => {
   const { isCartOpen, closeCart } = useCartSidebar();
   const { items, removeFromCart } = useCartStore();
+  const { t, i18n } = useTranslation('common');
 
   const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  const formatPrice = (price: number) => {
+    const formatter = new Intl.NumberFormat(i18n.language, {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    });
+    return formatter.format(price);
+  };
 
   return (
     <>
@@ -15,14 +26,14 @@ export const CartSidebar = () => {
       {/* Sidebar */}
       <aside className={`cart-sidebar ${isCartOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
-          <h2>Your Cart</h2>
-          <button onClick={closeCart} className="close-btn" aria-label="Close cart">
+          <h2>{t('cart_title')}</h2>
+          <button onClick={closeCart} className="close-btn" aria-label={t('close_cart')}>
             &times;
           </button>
         </div>
         <div className="sidebar-content">
           {items.length === 0 ? (
-            <p>Your cart is empty.</p>
+            <p>{t('cart_empty')}</p>
           ) : (
             <>
               <ul className="cart-items-list">
@@ -31,17 +42,17 @@ export const CartSidebar = () => {
                     <img src={item.thumbnail} alt={item.title} />
                     <div className="cart-item-details">
                       <span>{item.title}</span>
-                      <span>Qty: {item.quantity}</span>
+                      <span>{t('quantity')}: {item.quantity}</span>
                     </div>
-                    <span className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</span>
-                    <button onClick={() => removeFromCart(item.id)} className="remove-item-btn" aria-label={`Remove ${item.title} from cart`}>
+                    <span className="cart-item-price">{formatPrice(item.price * item.quantity)}</span>
+                    <button onClick={() => removeFromCart(item.id)} className="remove-item-btn" aria-label={t('remove_from_cart', { productTitle: item.title })}>
                       &times;
                     </button>
                   </li>
                 ))}
               </ul>
               <div className="cart-total">
-                <strong>Total: ${total.toFixed(2)}</strong>
+                <strong>{t('total')}: {formatPrice(total)}</strong>
               </div>
             </>
           )}

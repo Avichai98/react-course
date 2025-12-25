@@ -160,3 +160,77 @@
   text-align: right;
   font-size: 1.2rem;
 }
+/* DataTable Styles */
+.card {
+  margin: 1rem 0;
+}
+
+.product-image {
+  border-radius: 4px;
+}
+
+/* RTL Support */
+[dir="rtl"] .app-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .header-nav {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .language-switcher {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .cart-sidebar {
+  right: auto;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .cart-sidebar.open {
+  transform: translateX(0);
+}
+
+/* Header Layout Fixes */
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.flex-spacer {
+  flex: 1;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* RTL Header Fix */
+[dir="rtl"] .header-content {
+  flex-direction: row-reverse;
+}
+/* Cart Button */
+.cart-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+
+.cart-button:hover {
+  background: #0056b3;
+}
+
+[dir="rtl"] .cart-button {
+  margin-right: 0;
+  margin-left: 1rem;
+}

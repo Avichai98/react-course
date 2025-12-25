@@ -16,8 +16,11 @@ export const resources = {
   },
 } as const;
 
+// Get saved language from localStorage or default to 'en'
+const savedLanguage = localStorage.getItem('language') || 'en';
+
 i18n.use(initReactI18next).init({
-  lng: "en", // default language
+  lng: savedLanguage, // use saved language
   fallbackLng: "en",
   ns: ["common", "products"],
   defaultNS: "common",
@@ -26,5 +29,28 @@ i18n.use(initReactI18next).init({
     escapeValue: false, // React already protects from XSS
   },
 });
+
+// Save language changes to localStorage
+i18n.on('languageChanged', (lng) => {
+  localStorage.setItem('language', lng);
+  
+  // Set RTL for Hebrew
+  if (lng === 'he') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'he';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = lng;
+  }
+});
+
+// Set initial direction and language
+if (savedLanguage === 'he') {
+  document.documentElement.dir = 'rtl';
+  document.documentElement.lang = 'he';
+} else {
+  document.documentElement.dir = 'ltr';
+  document.documentElement.lang = savedLanguage;
+}
 
 export default i18n;
