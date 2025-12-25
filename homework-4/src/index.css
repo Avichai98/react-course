@@ -72,3 +72,11 @@ button:focus-visible {
   max-width: 1280px;
   padding: 2rem;
 }
+
+.product-image {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}

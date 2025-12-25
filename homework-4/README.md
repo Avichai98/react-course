@@ -25,3 +25,11 @@ When an RTL language is active, the `dir="rtl"` and `lang` attributes are set on
 
 *   **RTL Issue 1 -> Fix**: The header elements (logo, nav, switcher) did not reverse their order in RTL mode. This was fixed by applying `flex-direction: row-reverse;` to the main header container when `dir="rtl"`.
 *   **RTL Issue 2 -> Fix**: The "Language:" label in the language switcher remained on the left in RTL. This was also fixed using `flex-direction: row-reverse;` on the switcher's container to correctly position the label to the right of the buttons.
+
+### Step 5: PrimeReact Setup + DataTable Conversion
+
+The product list page was converted from a basic HTML list to a PrimeReact `DataTable`, driven by the data from TanStack Query.
+
+*   **DataTable Features Implemented**:
+    1.  **Sorting**: Users can sort the table by Title, Price, and Category.
+    2.  **Pagination**: The table is paginated, showing 5 products per page.
