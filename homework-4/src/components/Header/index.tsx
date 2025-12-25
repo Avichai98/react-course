@@ -1,18 +1,22 @@
-import { useCartSidebar } from '../../hooks/useCartSidebar';
-import ThemeToggleButton from '../../hooks/ThemeToggleButton';
+import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
+import "./index.css";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export const Header = () => {
-  const { toggleCart } = useCartSidebar();
+  const { t } = useTranslation(["common"]);
 
   return (
     <header className="app-header">
-      <h1>My Shop</h1>
-      <nav className="header-nav">
-        <ThemeToggleButton />
-        <button onClick={toggleCart} className="cart-button">
-          Cart
-        </button>
-      </nav>
+      <div className="header-content">
+        <h1>{t("appTitle")}</h1>
+        <nav>
+          <NavLink to="/products">{t("nav_products")}</NavLink>
+        </nav>
+        <div className="flex-spacer"></div>
+        <LanguageSwitcher />
+      </div>
     </header>
   );
-}
+};
+export default Header;

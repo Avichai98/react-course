@@ -18,3 +18,10 @@ This project starts from commit `fc52823` and uses the FakeStore API (`https://f
 ### Step 3: Language Switcher + Persistence
 
 I added a language switcher to the header. When a language is selected, the choice is saved to `localStorage` under the key `language`. When the application loads, it checks for this key in `localStorage` and applies the saved language. If no language is found in storage, it defaults to English.
+
+### Step 4: RTL Mode
+
+When an RTL language is active, the `dir="rtl"` and `lang` attributes are set on the `<html>` element.
+
+*   **RTL Issue 1 -> Fix**: The header elements (logo, nav, switcher) did not reverse their order in RTL mode. This was fixed by applying `flex-direction: row-reverse;` to the main header container when `dir="rtl"`.
+*   **RTL Issue 2 -> Fix**: The "Language:" label in the language switcher remained on the left in RTL. This was also fixed using `flex-direction: row-reverse;` on the switcher's container to correctly position the label to the right of the buttons.

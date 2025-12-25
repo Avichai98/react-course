@@ -27,3 +27,8 @@
     font-size: 0.8rem;
     color: #6c757d;
 }
+
+/* RTL Fix: Reverse the order of items in the header */
+html[dir="rtl"] .header-content {
+    flex-direction: row-reverse;
+}
