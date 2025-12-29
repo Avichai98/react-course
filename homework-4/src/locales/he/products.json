@@ -1,0 +1,19 @@
+{
+  "products_page_title": "המוצרים שלנו",
+  "showing_products_one": "מציג {{count}} מוצר",
+  "showing_products_other": "מציג {{count}} מוצרים",
+  "loading": "טוען...",
+  "error": "אירעה שגיאה: {{error}}",
+  "no_products": "לא נמצאו מוצרים.",
+  "view_details": "צפה בפרטים",
+  "back_to_products": "חזרה למוצרים",
+  "image": "תמונה",
+  "title": "כותרת",
+  "price": "מחיר",
+  "category": "קטגוריה",
+  "action": "פעולה",
+  "add_to_cart": "הוסף לעגלה",
+  "cart_add_success": "{{productTitle}} נוסף לעגלה שלך!",
+  "cart_add_error": "נכשל בהוספת פריט לעגלה: {{error}}",
+  "unknown_error": "אירעה שגיאה לא ידועה."
+}
