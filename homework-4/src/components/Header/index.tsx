@@ -8,7 +8,7 @@ import { useCartStore } from "../../stores/cart";
 
 export const Header = () => {
   const { t } = useTranslation(["common"]);
-  const { openCart } = useCartSidebar();
+  const { toggleCart } = useCartSidebar();
   const { items } = useCartStore();
   
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
@@ -21,7 +21,7 @@ export const Header = () => {
           <NavLink to="/products">{t("nav_products")}</NavLink>
         </nav>
         <div className="flex-spacer"></div>
-        <button onClick={openCart} className="cart-button">
+        <button onClick={toggleCart} className="cart-button">
           🛒 Cart ({totalItems})
         </button>
         <ThemeSwitcher />

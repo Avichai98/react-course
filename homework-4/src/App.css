@@ -30,7 +30,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 4;
 }
 
 .cart-sidebar {
@@ -44,7 +44,7 @@
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
-  z-index: 1000;
+  z-index: 5;
   display: flex;
   flex-direction: column;
 }
