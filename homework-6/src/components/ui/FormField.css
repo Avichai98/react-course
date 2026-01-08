@@ -1,0 +1,133 @@
+.form-field {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-field__label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.form-field__required {
+  color: #e74c3c;
+  margin-left: 0.25rem;
+}
+
+.form-field__input-wrapper {
+  position: relative;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+}
+
+.form-field--error input,
+.form-field--error select,
+.form-field--error textarea {
+  border-color: #e74c3c;
+}
+
+.form-field--error input:focus,
+.form-field--error select:focus,
+.form-field--error textarea:focus {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.form-field__error {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Range slider styling */
+.form-field input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  padding: 0;
+}
+
+.form-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #646cff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-field input[type="range"]::-webkit-slider-thumb:hover {
+  background: #535bf2;
+}
+
+.form-field input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #646cff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.form-field input[type="range"]::-moz-range-thumb:hover {
+  background: #535bf2;
+}
+
+@media (prefers-color-scheme: dark) {
+  .form-field__label {
+    color: #fff;
+  }
+  
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #fff;
+  }
+  
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: #646cff;
+  }
+}

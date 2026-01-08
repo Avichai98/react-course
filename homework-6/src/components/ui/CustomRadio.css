@@ -1,0 +1,91 @@
+.custom-radio {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.custom-radio__label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.4;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.custom-radio__label:hover {
+  color: #646cff;
+}
+
+.custom-radio__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-right: 0.75rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.custom-radio__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #646cff;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.2s ease;
+}
+
+/* Checked state */
+input:checked + .custom-radio__label .custom-radio__button {
+  border-color: #646cff;
+}
+
+input:checked + .custom-radio__label .custom-radio__dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Focus state */
+input:focus + .custom-radio__label .custom-radio__button {
+  outline: 2px solid #646cff;
+  outline-offset: 2px;
+}
+
+/* Hover state */
+.custom-radio__label:hover .custom-radio__button {
+  border-color: #646cff;
+}
+
+/* Error state */
+input[aria-invalid="true"] + .custom-radio__label .custom-radio__button {
+  border-color: #e74c3c;
+}
+
+input[aria-invalid="true"]:checked + .custom-radio__label .custom-radio__dot {
+  background-color: #e74c3c;
+}
+
+.custom-radio__text {
+  flex: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .custom-radio__button {
+    background-color: #2a2a2a;
+    border-color: #444;
+  }
+  
+  .custom-radio__label {
+    color: #fff;
+  }
+  
+  .custom-radio__label:hover {
+    color: #646cff;
+  }
+}
