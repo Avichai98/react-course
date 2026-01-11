@@ -60,6 +60,7 @@
   font-size: 0.875rem;
   margin-top: 0.5rem;
   animation: slideDown 0.2s ease-out;
+  word-break: break-word;
 }
 
 @keyframes slideDown {

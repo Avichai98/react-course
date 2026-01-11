@@ -6,6 +6,11 @@
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.registration-form {
+  width: 100%;
 }
 
 .registration-form h2 {
@@ -34,9 +39,16 @@
 }
 
 .form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+  width: 100%;
+}
+
+.form-row .form-field {
+  flex: 1;
+  min-width: 0;
+  flex-basis: calc(50% - 0.5rem);
 }
 
 .radio-group,
@@ -116,7 +128,11 @@
   }
   
   .form-row {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+  
+  .form-row .form-field {
+    flex-basis: 100%;
   }
   
   .checkbox-group {
