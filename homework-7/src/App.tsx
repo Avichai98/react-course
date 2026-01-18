@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import CartSidebarProvider from './context/CartSidebarContext';
 import { Header, CartSidebar, ProductList } from './components';
 import { ToastHost, GlobalLoadingIndicator } from '@homework-7/ui';
-import { useNotificationStore } from './stores/notifications';
+import { useNotificationStore } from '@homework-7/hooks';
 import ProductDetail from './components/ProductDetail';
 import './App.css';
 

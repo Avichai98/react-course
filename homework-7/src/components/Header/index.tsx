@@ -2,9 +2,8 @@ import { useTranslation, Trans } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import "./index.css";
 import { LanguageSwitcher } from "@homework-7/i18n";
+import { useCartStore, useCartSidebar } from "@homework-7/hooks";
 import ThemeSwitcher from "../ThemeSwitcher";
-import { useCartSidebar } from "../../hooks/useCartSidebar";
-import { useCartStore } from "../../stores/cart";
 
 export const Header = () => {
   const { t } = useTranslation(["common"]);

@@ -4,7 +4,8 @@ import { createContext } from 'react';
 export interface CartSidebarContextType {
   isCartOpen: boolean;
   toggleCart: () => void;
-  closeCart: () => void; // Keep closeCart for explicit closing (overlay, X button)
+  openCart: () => void;
+  closeCart: () => void;
 }
 
 // Create the context with an undefined initial value

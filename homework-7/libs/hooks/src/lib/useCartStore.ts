@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Product } from '../api/products';
+import type { Product } from './useProducts';
 
 export interface CartItem extends Product {
   quantity: number;

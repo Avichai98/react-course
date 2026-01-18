@@ -1,5 +1,4 @@
-import { useCartSidebar } from '../../hooks/useCartSidebar';
-import { useCartStore } from '../../stores/cart';
+import { useCartSidebar, useCartStore } from '@homework-7/hooks';
 import { useTranslation } from 'react-i18next';
 
 export const CartSidebar = () => {

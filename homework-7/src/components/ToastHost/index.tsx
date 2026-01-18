@@ -1,4 +1,4 @@
-import { useNotificationStore } from '../../stores/notifications';
+import { useNotificationStore } from '@homework-7/hooks';
 import './index.css';
 
 export const ToastHost = () => {

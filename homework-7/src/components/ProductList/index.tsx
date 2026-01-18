@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
-import { useCartStore } from "../../stores/cart";
-import { useNotificationStore } from "../../stores/notifications";
-import { useProducts, useAddToCart, type Product } from "@homework-7/hooks";
+import { useCartStore, useNotificationStore, useProducts, useAddToCart, type Product } from "@homework-7/hooks";
 
 export const ProductList = () => {
   const { t, i18n } = useTranslation("products");
