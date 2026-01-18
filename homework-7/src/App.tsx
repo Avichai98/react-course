@@ -1,10 +1,21 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import CartSidebarProvider from './context/CartSidebarContext';
-import { Header, CartSidebar, ToastHost, GlobalLoadingIndicator, ProductList } from './components';
+import { Header, CartSidebar, ProductList } from './components';
+import { ToastHost, GlobalLoadingIndicator } from '@homework-7/ui';
+import { useNotificationStore } from './stores/notifications';
 import ProductDetail from './components/ProductDetail';
 import './App.css';
 
 function App() {
+  const { notifications, removeNotification } = useNotificationStore();
+  
+  // Convert notifications to the format expected by ToastHost
+  const toasts = notifications.map(notification => ({
+    id: notification.id.toString(),
+    message: notification.message,
+    type: notification.type,
+  }));
+
   return (
     <CartSidebarProvider>
       <div className="app">
@@ -18,7 +29,7 @@ function App() {
           </Routes>
         </main>
         <CartSidebar />
-        <ToastHost />
+        <ToastHost toasts={toasts} onRemoveToast={(id) => removeNotification(parseInt(id))} />
       </div>
     </CartSidebarProvider>
   );

@@ -78,9 +78,9 @@ test.describe('PrimeReact Theme Switcher', () => {
     // Wait for DataTable to load
     await page.waitForSelector('.p-datatable', { timeout: 10000 });
     
-    // Get initial DataTable styling
+    // Get initial DataTable styling (for potential future use)
     const dataTable = page.locator('.p-datatable');
-    const initialStyles = await dataTable.evaluate((el) => {
+    await dataTable.evaluate((el) => {
       const styles = window.getComputedStyle(el);
       return {
         backgroundColor: styles.backgroundColor,

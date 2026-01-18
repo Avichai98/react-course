@@ -1,4 +1,3 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { DataTable } from "primereact/datatable";
@@ -6,36 +5,35 @@ import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { useCartStore } from "../../stores/cart";
 import { useNotificationStore } from "../../stores/notifications";
-import { addToCartAPI } from "../../api/cart";
-import { fetchProductsAPI, type Product } from "../../api/products";
+import { useProducts, useAddToCart, type Product } from "@homework-7/hooks";
 
 export const ProductList = () => {
-  const { t } = useTranslation("products");
+  const { t, i18n } = useTranslation("products");
   const navigate = useNavigate();
   const addProductToCart = useCartStore((state) => state.addToCart);
   const addNotification = useNotificationStore((state) => state.addNotification);
   
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["products"],
-    queryFn: fetchProductsAPI,
-  });
+  const { data, isLoading, error } = useProducts();
 
-  const addToCartMutation = useMutation({
-    mutationFn: (product: Product) => addToCartAPI(product.id),
-    onSuccess: (_data, product) => {
-      addNotification({
-        type: 'success',
-        message: t('cart_add_success', { productTitle: product.title }),
-      });
-      addProductToCart(product);
-    },
-    onError: (error) => {
-      addNotification({
-        type: 'error',
-        message: t('cart_add_error', { error: error.message || t('unknown_error') }),
-      });
-    },
-  });
+  const addToCartMutation = useAddToCart();
+
+  const handleAddToCart = (product: Product) => {
+    addToCartMutation.mutate(product.id, {
+      onSuccess: () => {
+        addNotification({
+          type: 'success',
+          message: t('cart_add_success', { productTitle: product.title }),
+        });
+        addProductToCart(product);
+      },
+      onError: (error) => {
+        addNotification({
+          type: 'error',
+          message: t('cart_add_error', { error: error.message || t('unknown_error') }),
+        });
+      },
+    });
+  };
 
   if (isLoading) return <div>{t("loading")}</div>;
   if (error) return <div>{t("error", { error: error.message })}</div>;
@@ -46,7 +44,6 @@ export const ProductList = () => {
   };
 
   const priceBodyTemplate = (product: Product) => {
-    const { i18n } = useTranslation();
     const formatter = new Intl.NumberFormat(i18n.language, {
       style: 'currency',
       currency: 'USD',
@@ -68,8 +65,8 @@ export const ProductList = () => {
         <Button
           icon="pi pi-shopping-cart"
           label={t("add_to_cart")}
-          onClick={() => addToCartMutation.mutate(product)}
-          disabled={addToCartMutation.isPending && addToCartMutation.variables?.id === product.id}
+          onClick={() => handleAddToCart(product)}
+          disabled={addToCartMutation.isPending}
           size="small"
           severity="success"
         />

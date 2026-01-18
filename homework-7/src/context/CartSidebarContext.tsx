@@ -1,6 +1,6 @@
 import { useMemo, type ReactNode, useCallback } from 'react';
 import { CartSidebarContext, type CartSidebarContextType } from './cartSidebarTypes';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useLocalStorage } from '@homework-7/hooks';
 
 // Create the provider component
 export default function CartSidebarProvider({ children }: { children: ReactNode }) {

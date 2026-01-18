@@ -7,12 +7,7 @@ test.describe('Internationalization (i18n)', () => {
     // Wait for page to load
     await page.waitForLoadState('networkidle');
     
-    // Find language switcher (could be buttons or dropdown)
-    const languageSwitcher = page.locator('[data-testid="language-switcher"]').or(
-      page.locator('button:has-text("EN")').or(
-        page.locator('button:has-text("עב")')
-      )
-    );
+    // Language switcher exists but we don't need to interact with it for this test
     
     // Switch to Hebrew if available
     const hebrewButton = page.locator('button:has-text("עב")').or(

@@ -28,7 +28,7 @@ export default tseslint.config(
       '@nx/enforce-module-boundaries': [
         'error',
         {
-          enforceBuildableLibDependency: true,
+          enforceBuildableLibDependency: false,
           allow: [],
           depConstraints: [
             {

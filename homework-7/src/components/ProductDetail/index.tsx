@@ -1,16 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
-import { fetchProductAPI } from "../../api/products";
+import { useProduct } from "@homework-7/hooks";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { t, i18n } = useTranslation("products");
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["product", id],
-    queryFn: () => fetchProductAPI(id!),
-    enabled: !!id,
-  });
+  const { data, isLoading, error } = useProduct(id!);
 
   if (isLoading) return <div>{t("loading")}</div>;
   if (error) return <div>{t("error", { error: error.message })}</div>;

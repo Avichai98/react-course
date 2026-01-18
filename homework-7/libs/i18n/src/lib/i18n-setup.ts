@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import type { Resource } from "i18next";
 
 // Helper function to check if language is RTL
 export const isRtlLang = (lang: string): boolean => {
@@ -7,7 +8,7 @@ export const isRtlLang = (lang: string): boolean => {
 };
 
 // Initialize i18n with resources
-export const initI18n = (resources: any) => {
+export const initI18n = (resources: Resource) => {
   // Get saved language from localStorage or default to 'en'
   const savedLanguage = localStorage.getItem('language') || 'en';
 
