@@ -73,9 +73,7 @@ $ npx nx affected -t build
  NX   Affected criteria defaulted to --base=main --head=HEAD
 
    √  nx run homework-5:build (7s)
-                                                                                        
-——————————————————————————————————————————————————————————————————————————————————————— 
-                                                                                        
+                                                            
  NX   Successfully ran target build for project homework-5 (7s)
 ```
 
