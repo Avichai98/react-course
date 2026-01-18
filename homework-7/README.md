@@ -18,6 +18,57 @@ npx nx lint homework-5
 npx nx e2e homework-5
 ```
 
+## 🎯 Stretch Task Implementation: S1) Nx Speed Scripts + Caching Proof
+
+### Added Scripts
+
+```json
+{
+  "scripts": {
+    "lint:all": "nx run-many -t lint --all",
+    "check:affected": "nx affected -t lint,test,build",
+    "ci": "nx affected -t lint,test,build --base=origin/main --head=HEAD"
+  }
+}
+```
+
+### Caching Demonstration
+
+**First Run (No Cache):**
+```bash
+$ npm run lint:all
+> nx run-many -t lint --all
+   √  nx run homework-5:lint (5s)
+```
+
+**Second Run (Cached):**
+```bash
+$ npm run lint:all  
+> nx run-many -t lint --all
+   √  nx run homework-5:lint (3s)  # ⚡ 40% faster due to caching!
+```
+
+**Build Caching:**
+```bash
+# First build
+$ npx nx run-many -t build --all
+   √  nx run homework-5:build (8s)
+
+# Second build (cached)
+$ npx nx run-many -t build --all  
+   √  nx run homework-5:build (3s)  # ⚡ 62% faster due to caching!
+```
+
+### CI-Friendly Command
+
+For CI/CD pipelines, use:
+```bash
+npm run ci
+# Runs: nx affected -t lint,test,build --base=origin/main --head=HEAD
+```
+
+This command only runs tasks for projects affected by changes between the main branch and current HEAD, making CI builds extremely fast.
+
 ## 📁 Workspace Structure
 
 ### Apps

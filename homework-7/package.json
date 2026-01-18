@@ -11,7 +11,10 @@
     "test": "nx e2e",
     "test:ui": "nx e2e --ui",
     "test:headed": "nx e2e --headed",
-    "test:debug": "nx e2e --debug"
+    "test:debug": "nx e2e --debug",
+    "lint:all": "nx run-many -t lint --all",
+    "check:affected": "nx affected -t lint,test,build",
+    "ci": "nx affected -t lint,test,build --base=origin/main --head=HEAD"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.12",
