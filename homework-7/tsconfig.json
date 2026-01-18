@@ -1,0 +1,18 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "paths": {
+      "ui": ["libs/ui/src/index.ts"],
+      "hooks": ["libs/hooks/src/index.ts"],
+      "i18n": ["libs/i18n/src/index.ts"]
+    }
+  }
+}

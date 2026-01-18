@@ -1,0 +1,13 @@
+{
+  "appTitle": "חנות פריים",
+  "nav_products": "מוצרים",
+  "language": "שפה",
+  "theme": "ערכת נושא",
+  "powered_by": "מופעל על ידי <1>React</1> ו-<2>PrimeReact</2>",
+  "cart_title": "העגלה שלך",
+  "close_cart": "סגור עגלה",
+  "cart_empty": "העגלה שלך ריקה.",
+  "quantity": "כמות",
+  "remove_from_cart": "הסר את {{productTitle}} מהעגלה",
+  "total": "סה\"כ"
+}
