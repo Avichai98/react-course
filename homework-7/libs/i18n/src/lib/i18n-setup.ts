@@ -7,7 +7,7 @@ export const isRtlLang = (lang: string): boolean => {
 };
 
 // Initialize i18n with resources
-export const initI18n = (resources: Record<string, Record<string, unknown>>) => {
+export const initI18n = (resources: any) => {
   // Get saved language from localStorage or default to 'en'
   const savedLanguage = localStorage.getItem('language') || 'en';
 

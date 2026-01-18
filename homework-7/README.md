@@ -1,146 +1,73 @@
-# Homework 5 - Advanced 2: Playwright Testing
+# Nx Monorepo - React E-commerce App
 
-This project demonstrates E2E testing with Playwright for a React TypeScript store application with i18n and PrimeReact.
+A modern React e-commerce application built with Nx monorepo architecture, featuring TanStack Query, i18n, and comprehensive testing.
 
-## Project Overview
-
-This is the React TypeScript store application from homework-4, now enhanced with comprehensive Playwright E2E testing for homework-5 (Advanced 2 - Testing).
-
-### Features Tested
-- **React Store App** with TanStack Query
-- **Internationalization (i18n)** with English/Hebrew and RTL support
-- **PrimeReact DataTable** with sorting and pagination
-- **Theme Switcher** with persistence
-- **Shopping Cart** functionality
-- **Product Detail** pages with routing
-
-## Quick Start
+## 🚀 How to Run
 
 ```bash
-# Install dependencies
-npm install
+# Development
+npx nx serve homework-5
 
-# Start development server
-npm run dev
+# Build
+npx nx build homework-5
 
-# Run Playwright tests
-npm test
+# Lint
+npx nx lint homework-5
 
-# Run tests with UI (interactive)
-npm run test:ui
+# Test (E2E)
+npx nx e2e homework-5
 ```
 
-## Testing Setup
+## 📁 Workspace Structure
 
-### Playwright Configuration
-- **Test Directory**: `./tests`
-- **Base URL**: `http://localhost:5173`
-- **Browsers**: Chromium, Firefox, WebKit
-- **Dev Server**: Automatically starts before tests
-- **Total Tests**: 6 test files with 69 total tests (63 passing)
+### Apps
+- **homework-5**: Main React e-commerce application with product catalog, cart, and i18n
 
-### Test Files
+### Libs
+- **libs/ui**: Reusable UI components (ToastHost, GlobalLoadingIndicator, AppCard)
+- **libs/hooks**: TanStack Query hooks and utilities (useProducts, useCart, useLocalStorage)
+- **libs/i18n**: Internationalization setup and LanguageSwitcher component
 
-1. **`basic-functionality.spec.ts`** - Core app functionality
-   - Application loads successfully
-   - No JavaScript errors
-   - React mounts correctly
-   - Navigation works
+## 🏗 Architecture Rules (Module Boundaries)
 
-2. **`store-functionality.spec.ts`** - Store-specific features
-   - Products DataTable display
-   - Product navigation
-   - DataTable sorting
+```typescript
+// Dependency constraints enforced by @nx/enforce-module-boundaries:
+type:ui → can depend on → type:hooks, type:i18n
+type:hooks → can depend on → (none)
+type:i18n → can depend on → (none)
+apps → can depend on → type:ui, type:hooks, type:i18n
+libs → cannot import from → apps
+```
 
-3. **`i18n-functionality.spec.ts`** - Internationalization
-   - Language switcher functionality
-   - Language persistence after reload
-   - RTL support for Hebrew
-   - Pluralization verification
+## 📊 Affected Demo
 
-4. **`theme-switcher.spec.ts`** - PrimeReact theming
-   - Theme switching functionality
-   - Theme persistence in localStorage
-   - PrimeReact component theme reflection
-
-5. **`accessibility.spec.ts`** - Accessibility compliance
-   - Proper heading structure
-   - Keyboard navigation
-   - Image alt text validation
-   - Color contrast checks
-   - Form label associations
-
-6. **`error-handling.spec.ts`** - Error scenarios
-   - Network error handling
-   - Invalid product ID handling
-   - Console error monitoring
-   - Application recovery from failures
-
-## Running Tests
+### Change made: Modified UI lib AppCard component border-radius from 12px to 16px
 
 ```bash
-# Run all tests
-npm test
+# Show affected projects
+$ npx nx show projects --affected
+homework-5
+hooks
+i18n
+ui
 
-# Run tests with UI mode (interactive)
-npm run test:ui
+# Run affected build
+$ npx nx affected -t build
+ NX   Affected criteria defaulted to --base=main --head=HEAD
 
-# Run tests in headed mode (visible browser)
-npm run test:headed
-
-# Debug tests step by step
-npm run test:debug
+   √  nx run homework-5:build (7s)
+                                                                                        
+——————————————————————————————————————————————————————————————————————————————————————— 
+                                                                                        
+ NX   Successfully ran target build for project homework-5 (7s)
 ```
 
-## Development
+**Result**: Only the main app needed to rebuild because it depends on the UI lib. Nx intelligently skipped unchanged projects, demonstrating dependency-aware build optimization.
 
-```bash
-# Start development server
-npm run dev
+## 🎯 Nx Features Demonstrated
 
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-
-# Lint code
-npm run lint
-```
-
-## Test Features Demonstrated
-
-- **Cross-browser testing** (Chromium, Firefox, WebKit)
-- **Visual regression testing** with screenshots
-- **Accessibility testing** for WCAG compliance
-- **Performance monitoring** with timing assertions
-- **Error detection** for console errors and failed requests
-- **Responsive design testing** with viewport changes
-- **Interactive element testing** with user actions
-- **Keyboard navigation testing** for accessibility
-- **Integration testing** with complete user workflows
-- **Smoke testing** for critical functionality
-- **i18n testing** for multiple languages and RTL support
-- **Theme testing** for PrimeReact theme switching
-
-## Key Technologies
-
-- **React 19** with TypeScript
-- **Vite** for build tooling
-- **TanStack Query** for data fetching
-- **React Router** for navigation
-- **PrimeReact** for UI components
-- **i18next** for internationalization
-- **Zustand** for state management
-- **Playwright** for E2E testing
-
-## Advanced Features
-
-- **Internationalization**: English/Hebrew with RTL support
-- **Theme Switching**: Multiple PrimeReact themes with persistence
-- **Shopping Cart**: Add/remove products with sidebar
-- **Product Management**: List, detail, and navigation
-- **Error Handling**: Graceful error states and recovery
-- **Accessibility**: WCAG compliant with keyboard navigation
-
-The comprehensive test suite ensures the React store application works correctly across different browsers, languages, themes, and error scenarios, making it production-ready.
+- ✅ Project graph visualization (`npx nx graph`)
+- ✅ Module boundary enforcement with @nx/enforce-module-boundaries
+- ✅ Affected command optimization (`npx nx affected`)
+- ✅ Buildable libraries with proper npm-scoped aliases (@homework-7/*)
+- ✅ Integrated linting, building, and testing

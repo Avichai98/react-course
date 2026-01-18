@@ -1,4 +1,4 @@
-import { initI18n } from 'i18n';
+import { initI18n } from '@homework-7/i18n';
 import commonEn from "./locales/en/common.json";
 import productsEn from "./locales/en/products.json";
 import commonHe from "./locales/he/common.json";

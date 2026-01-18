@@ -9,9 +9,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "ui": ["libs/ui/src/index.ts"],
-      "hooks": ["libs/hooks/src/index.ts"],
-      "i18n": ["libs/i18n/src/index.ts"]
+      "@homework-7/ui": ["libs/ui/src/index.ts"],
+      "@homework-7/hooks": ["libs/hooks/src/index.ts"],
+      "@homework-7/i18n": ["libs/i18n/src/index.ts"]
     },
 
     /* Bundler mode */
